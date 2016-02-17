@@ -32,9 +32,13 @@
                 $state.go('items');
             }
 
-            if ($stateParams.item.pic == 'blank') {
-                vm.pic = $rootScope.noImage;
-            }
+
+            vm.description = 'Phone: ' + vm.phone + '\n'
+                + 'Str: ' + vm.street + '\n'
+                + 'House: ' + vm.house + '\n'
+                + 'Apt: ' + vm.apt;
+                + 'Zip: ' + vm.index;
+
             $rootScope.myError = false;
             $rootScope.loading = false;
         }

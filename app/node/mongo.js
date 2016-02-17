@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://admin:admin@ds049935.mongolab.com:49935/ui-collection');
+mongoose.connect('mongodb://admin:admin@ds011258.mongolab.com:11258/ui-base');
 //mongoose.connect('mongodb://localhost:27017/ui-base');
 
 var db = mongoose.connection;
@@ -18,10 +18,7 @@ var Schema = mongoose.Schema;
 //---------------------------------------------------------------------------------------------
 var Items = new Schema({
     id: {type: String, required: true},
-    pic: {type: String, required: true},
     name: {type: String, required: true},
-    category: {type: String, required: true},
-    group: {type: String, required: true},
     description: {type: String, required: true}
 });
 

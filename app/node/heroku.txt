@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------------------------------
-mongoose.connect('mongodb://admin:admin@ds049935.mongolab.com:49935/ui-base');
+mongoose.connect('mongodb://admin:admin@ds011258.mongolab.com:11258/ui-base');
 -----------------------------------------------------------------------------------------------------
 node index.js
 
@@ -14,23 +14,22 @@ show collections
 db.dropDatabase()
 
 -----------------------------------------------------------------------------------------------------
-mongoose.connect('mongodb://localhost:27017');
+mongoose.connect('mongodb://localhost:27017/ui-base');
 https://mongolab.com/databases/ui-base
+-----------------------------------------------------------------------------------------------------
+mongoimport -h ds011258.mongolab.com:11258 -d ui-base -c items -u admin -p admin --file items.json
+mongoexport -h ds011258.mongolab.com:11258 -d ui-base -c items -u admin -p admin -o items1.json
 
-mongoimport -h ds049935.mongolab.com:49935 -d ui-base -c users -u admin -p admin --file users.json
-mongoexport -h ds049935.mongolab.com:49935 -d ui-base -c users -u admin -p admin -o users1.json
-
-mongoimport -h ds049935.mongolab.com:49935 -d ui-base -c items -u admin -p admin --file base.json
-mongoexport -h ds049935.mongolab.com:49935 -d ui-base -c items -u admin -p admin -o items1.json
+mongoimport -h ds011258.mongolab.com:11258 -d ui-base -c users -u admin -p admin --file users.json
+mongoexport -h ds011258.mongolab.com:11258 -d ui-base -c users -u admin -p admin -o users1.json
 
 -----------------------------------------------------------------------------------------------------
-mongoose.connect('mongodb://localhost:27017/ui-base');
+mongoimport --db ui-base --base items --file items.json
+mongoexport --db ui-base --base items -o items1.json
 
 mongoimport --db ui-base --base users --file users.json
 mongoexport --db ui-base --base users -o users1.json
 
-mongoimport --db ui-base --base items --file base.json
-mongoexport --db ui-base --base items -o items1.json
 -----------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------

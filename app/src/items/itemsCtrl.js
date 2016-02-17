@@ -43,7 +43,7 @@
             $rootScope.myError = false;
             $rootScope.loading = false;
 
-            if ($rootScope.mode != 'OFF-LINE (LocalStorage)') {
+            if ($rootScope.mode == '1ON-LINE (Heroku)') {    //TODO getAll
                 if ($rootScope.itemsComplete != true) {
                     $rootScope.itemsComplete = true;
                     ItemsService.getAllItems()

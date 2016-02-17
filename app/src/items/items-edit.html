@@ -3,7 +3,7 @@
     <br><br>
     <img ng-src="logo.jpg" class="logo" ng-click="itemsCtrl.goToBack()">
     <hr>
-    <form ng-submit="itemsEditCtrl.itemsSubmit()" novalidate name="itemsEditCtrl.form">
+    <form ng-submit="itemsEditCtrl.itemsEditBack()" novalidate name="itemsEditCtrl.form">
         <div class="header">&nbsp;{{itemsEditCtrl.name}}</div>
         <br><br>
         <table class="table table-bordered">
@@ -33,7 +33,7 @@
             </tr>
         </table>
 
-        <button type="submit" class="btn btn-primary button">Submit</button>&nbsp
+        <button type="submit" class="btn btn-primary button">Cancel</button>&nbsp
         <button type="button" class="btn btn-primary button" ng-click="itemsEditCtrl.itemsDialog()">Delete</button>
         <br><br>
         <button type="button" class="btn btn-primary button" ng-click="itemsEditCtrl.itemsEditBack()">Back</button>

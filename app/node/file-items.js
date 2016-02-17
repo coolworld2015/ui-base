@@ -22,7 +22,8 @@ function getAll(req, res) {
 
 function getFirstHundred(req, res) {
     var hundred = [].concat(jsonItems.sort(sort));
-	hundred.splice(10, 10000);
+	hundred.splice(10, 1000000);
+    console.log(hundred.length);
     res.send(hundred);
 }
 
