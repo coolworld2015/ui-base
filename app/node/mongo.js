@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://admin:admin@ds049935.mongolab.com:49935/ui-collection');
-//mongoose.connect('mongodb://localhost:27017/ui-collection');
+//mongoose.connect('mongodb://localhost:27017/ui-base');
 
 var db = mongoose.connection;
 
@@ -14,39 +14,6 @@ db.once('open', function callback() {
 });
 
 var Schema = mongoose.Schema;
-
-//---------------------------------------------------------------------------------------------
-var Clients = new Schema({
-    id: {type: String, required: true},
-    name: {type: String, required: true},
-    pic: {type: String, required: true},
-    description: {type: String, required: true}
-});
-
-var ClientsModel = mongoose.model('Clients', Clients);
-module.exports.ClientsModel = ClientsModel;
-
-//---------------------------------------------------------------------------------------------
-var Categories = new Schema({
-    id: {type: String, required: true},
-    name: {type: String, required: true},
-    groups: [],
-    description: {type: String, required: true}
-});
-
-var CategoriesModel = mongoose.model('Categories', Categories);
-module.exports.CategoriesModel = CategoriesModel;
-
-//---------------------------------------------------------------------------------------------
-var Groups = new Schema({
-    id: {type: String, required: true},
-    name: {type: String, required: true},
-    category: {type: String, required: true},
-    description: {type: String, required: true}
-});
-
-var GroupsModel = mongoose.model('Groups', Groups);
-module.exports.GroupsModel = GroupsModel;
 
 //---------------------------------------------------------------------------------------------
 var Items = new Schema({

@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------------------------------
-mongoose.connect('mongodb://admin:admin@ds049935.mongolab.com:49935/ui-collection');
+mongoose.connect('mongodb://admin:admin@ds049935.mongolab.com:49935/ui-base');
 -----------------------------------------------------------------------------------------------------
 node index.js
 
@@ -15,22 +15,22 @@ db.dropDatabase()
 
 -----------------------------------------------------------------------------------------------------
 mongoose.connect('mongodb://localhost:27017');
-https://mongolab.com/databases/ui-collection
+https://mongolab.com/databases/ui-base
 
-mongoimport -h ds049935.mongolab.com:49935 -d ui-collection -c clients -u admin -p admin --file clients.json
-mongoexport -h ds049935.mongolab.com:49935 -d ui-collection -c clients -u admin -p admin -o clients1.json
+mongoimport -h ds049935.mongolab.com:49935 -d ui-base -c users -u admin -p admin --file users.json
+mongoexport -h ds049935.mongolab.com:49935 -d ui-base -c users -u admin -p admin -o users1.json
 
-mongoimport -h ds049935.mongolab.com:49935 -d ui-collection -c items -u admin -p admin --file collection.json
-mongoexport -h ds049935.mongolab.com:49935 -d ui-collection -c items -u admin -p admin -o items1.json
+mongoimport -h ds049935.mongolab.com:49935 -d ui-base -c items -u admin -p admin --file base.json
+mongoexport -h ds049935.mongolab.com:49935 -d ui-base -c items -u admin -p admin -o items1.json
 
 -----------------------------------------------------------------------------------------------------
-mongoose.connect('mongodb://localhost:27017/ui-collection');
+mongoose.connect('mongodb://localhost:27017/ui-base');
 
-mongoimport --db ui-collection --collection clients --file clients.json
-mongoexport --db ui-collection --collection clients -o clients1.json
+mongoimport --db ui-base --base users --file users.json
+mongoexport --db ui-base --base users -o users1.json
 
-mongoimport --db ui-collection --collection items --file collection.json
-mongoexport --db ui-collection --collection items -o items1.json
+mongoimport --db ui-base --base items --file base.json
+mongoexport --db ui-base --base items -o items1.json
 -----------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------
