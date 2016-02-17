@@ -9,8 +9,8 @@ app.listen(process.env.PORT || 3000, function () {
 });
 
 app.get('/', function (req, res) {
-	res.sendFile(__dirname + '/build/index.html');
-    //res.send('It is just API Server...');
+	//res.sendFile(__dirname + '/build/index.html');
+    res.send('It is just API Server...');
 });
 
 //app.use(express.static(__dirname + '/'));
