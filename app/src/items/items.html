@@ -1,5 +1,5 @@
 <center>
-    <div class="header">Collection</div>
+    <div class="header">UI-Base</div>
     <br><br>
     <img ng-src="logo.jpg" class="logo" ng-click="itemsCtrl.goToBack()">
     <hr>
@@ -17,15 +17,7 @@
 			filter:itemsCtrl.query as itemsFilter
 			track by $index">
             <td ng-click="itemsCtrl.itemsEditForm(item)" class="input">
-                <div class="img-div">
-                    <div ng-if="item.pic == 'blank'">
-                        <img ng-src="{{itemsCtrl.blank}}" class="img">
-                    </div>
-                    <div ng-if="item.pic != 'blank'">
-                        <img ng-src="{{item.pic}}" class="img">
-                    </div>
-                </div>
-                <div class="name">
+                <div class="name-div">
                     {{item.name}}
                 </div>
             </td>
