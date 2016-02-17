@@ -5,22 +5,15 @@
         .module('app')
         .controller('ConfigCtrl', ConfigCtrl);
 
-    ConfigCtrl.$inject = ['$scope', '$rootScope', '$state', '$http', '$timeout',
-        'UsersLocalStorage', 'CategoriesLocalStorage', 'GroupsLocalStorage', 'ClientsLocalStorage', 'ItemsLocalStorage'];
+    ConfigCtrl.$inject = ['$rootScope', '$state', '$http', '$timeout', 'UsersLocalStorage', 'ItemsLocalStorage'];
 
-    function ConfigCtrl($scope, $rootScope, $state, $http, $timeout,
-                        UsersLocalStorage, CategoriesLocalStorage, GroupsLocalStorage, ClientsLocalStorage, ItemsLocalStorage) {
+    function ConfigCtrl($rootScope, $state, $http, $timeout, UsersLocalStorage, ItemsLocalStorage) {
         var vm = this;
 
         angular.extend(vm, {
             init: init,
             toggleMode: toggleMode,
             doAction: doAction,
-            _getAllHeroku: getAllHeroku,
-            _getUsersHeroku: getUsersHeroku,
-            _getGroupsHeroku: getGroupsHeroku,
-            _getCategoriesHeroku: getCategoriesHeroku,
-            _getClientsHeroku: getClientsHeroku,
             _getItemsHeroku: getItemsHeroku,
             _loading: loading,
             _error: error,
@@ -38,11 +31,6 @@
 
             vm.options = [
                 {name: 'Select transaction', value: 'none'},
-                {name: 'Get all transactions', value: 'heroku.get.all'},
-                {name: 'Get users (Heroku)', value: 'heroku.users.get'},
-                {name: 'Get groups (Heroku)', value: 'heroku.groups.get'},
-                {name: 'Get categories (Heroku)', value: 'heroku.categories.get'},
-                {name: 'Get contacts (Heroku)', value: 'heroku.clients.get'},
                 {name: 'Get items (Heroku)', value: 'heroku.items.get'}
             ];
             vm.selectedItem = vm.options[0];
@@ -70,193 +58,12 @@
                     break;
                 }
 
-                case 'heroku.get.all':
-                {
-                    getAllHeroku();
-                    break;
-                }
-
-                case 'heroku.users.get':
-                {
-                    getUsersHeroku();
-                    break;
-                }
-
-                case 'heroku.groups.get':
-                {
-                    getGroupsHeroku();
-                    break;
-                }
-
-                case 'heroku.categories.get':
-                {
-                    getCategoriesHeroku();
-                    break;
-                }
-
-                case 'heroku.clients.get':
-                {
-                    getClientsHeroku();
-                    break;
-                }
-
                 case 'heroku.items.get':
                 {
                     getItemsHeroku();
                     break;
                 }
             }
-        }
-
-        function getAllHeroku() {
-            $rootScope.loading = true;
-
-            var url = vm.webUrl + 'api/items/get';
-            $http.get(url)
-                .then(function (results) {
-                    try {
-                        ItemsLocalStorage.uploadItems(results.data);
-
-                        var url = vm.webUrl + 'api/clients/get';
-                        $http.get(url)
-                            .then(function (results) {
-                                try {
-                                    ClientsLocalStorage.uploadClients(results.data);
-
-                                    var url = vm.webUrl + 'api/categories/get';
-                                    $http.get(url)
-                                        .then(function (results) {
-                                            try {
-                                                CategoriesLocalStorage.uploadCategories(results.data);
-
-                                                var url = vm.webUrl + 'api/groups/get';
-                                                $http.get(url)
-                                                    .then(function (results) {
-                                                        try {
-                                                            GroupsLocalStorage.uploadGroups(results.data);
-
-                                                            var url = vm.webUrl + 'api/users/get';
-                                                            $http.get(url)
-                                                                .then(function (results) {
-                                                                    try {
-                                                                        UsersLocalStorage.uploadUsers(results.data);
-                                                                        complete();
-                                                                    } catch (e) {
-                                                                        error();
-                                                                        alert(e);
-                                                                    }
-                                                                })
-                                                                .catch(function () {
-                                                                    error();
-                                                                });
-
-                                                        } catch (e) {
-                                                            error();
-                                                            alert(e);
-                                                        }
-                                                    })
-                                                    .catch(function () {
-                                                        error();
-                                                    });
-
-                                            } catch (e) {
-                                                error();
-                                                alert(e);
-                                            }
-                                        })
-                                        .catch(function () {
-                                            error();
-                                        });
-
-                                } catch (e) {
-                                    error();
-                                    alert(e);
-                                }
-                            })
-                            .catch(function () {
-                                error();
-                            });
-
-                    } catch (e) {
-                        error();
-                        alert(e);
-                    }
-                })
-                .catch(function () {
-                    error();
-                });
-        }
-
-        function getUsersHeroku() {
-            $rootScope.loading = true;
-            var url = vm.webUrl + 'api/users/get';
-            $http.get(url)
-                .then(function (results) {
-                    try {
-                        UsersLocalStorage.uploadUsers(results.data);
-                        complete();
-                    } catch (e) {
-                        error();
-                        alert(e);
-                    }
-                })
-                .catch(function () {
-                    error();
-                });
-        }
-
-        function getGroupsHeroku() {
-            $rootScope.loading = true;
-            var url = vm.webUrl + 'api/groups/get';
-            $http.get(url)
-                .then(function (results) {
-                    try {
-                        GroupsLocalStorage.uploadGroups(results.data);
-                        complete();
-                    } catch (e) {
-                        error();
-                        alert(e);
-                    }
-                })
-                .catch(function () {
-                    error();
-                });
-        }
-
-        function getCategoriesHeroku() {
-            $rootScope.loading = true;
-            var url = vm.webUrl + 'api/categories/get';
-            $http.get(url)
-                .then(function (results) {
-                    try {
-                        CategoriesLocalStorage.uploadCategories(results.data);
-                        complete();
-                    } catch (e) {
-                        error();
-                        alert(e);
-                    }
-                })
-                .catch(function () {
-                    error();
-                });
-        }
-
-        function getClientsHeroku() {
-            $rootScope.loading = true;
-            var url = vm.webUrl + 'api/clients/get';
-            $http.get(url)
-                .then(function (results) {
-                    try {
-                        ClientsLocalStorage.uploadClients(results.data);
-                        complete();
-                    } catch (e) {
-                        error();
-                        alert(e);
-                    }
-                })
-                .catch(function () {
-                    error();
-                });
         }
 
         function getItemsHeroku() {
@@ -293,7 +100,7 @@
         }
 
         function complete() {
-			$rootScope.loading = false;
+            $rootScope.loading = false;
             vm.error = false;
             vm.loading = false;
             vm.complete = true;
