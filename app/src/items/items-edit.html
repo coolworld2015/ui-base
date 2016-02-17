@@ -1,12 +1,11 @@
 <center>
+    <div class="header">UI-Base</div>
+    <br><br>
+    <img ng-src="logo.jpg" class="logo" ng-click="itemsCtrl.goToBack()">
+    <hr>
     <form ng-submit="itemsEditCtrl.itemsSubmit()" novalidate name="itemsEditCtrl.form">
         <div class="header">&nbsp;{{itemsEditCtrl.name}}</div>
         <br><br>
-
-        <div class="img-large-border">
-            <img ng-src="{{itemsEditCtrl.pic}}" class="img-large" ng-click="itemsEditCtrl.openPic()">
-        </div>
-        <br>
         <table class="table table-bordered">
             <tr>
                 <td>
@@ -22,22 +21,6 @@
 
             <tr>
                 <td>
-                    <input readonly1 type="text" class="form-control readonly"
-                           placeholder="Category"
-                           ng-model="itemsEditCtrl.category">
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <input readonly1 type="text" class="form-control readonly"
-                           placeholder="Group"
-                           ng-model="itemsEditCtrl.group">
-                </td>
-            </tr>
-
-            <tr>
-                <td>
 					<textarea rows=5 type="text" class="form-control input" required
                               placeholder="Description" name="description"
                               ng-model="itemsEditCtrl.description">
@@ -46,13 +29,6 @@
                     <div ng-if="itemsEditCtrl.form.$submitted">
                         <div ng-show="itemsEditCtrl.form.description.$error.required" class="valid">Value required</div>
                     </div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <input type="file" id="picFileInput" multiple
-                           onchange="angular.element(this).scope().convertPicToJSON()">
                 </td>
             </tr>
         </table>

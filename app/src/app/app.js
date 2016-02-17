@@ -29,19 +29,16 @@
     function init($rootScope) {
         var mode;
         if ($rootScope.mode === undefined) {
-            mode = localStorage.getItem('ui-collection.mode');
+            mode = localStorage.getItem('ui-base.mode');
             mode = JSON.parse(mode);
             $rootScope.mode = mode;
         }
 
         if ($rootScope.mode === null) {
             mode = 'OFF-LINE (LocalStorage)';
-            localStorage.setItem('ui-collection.mode', JSON.stringify(mode));
+            localStorage.setItem('ui-base.mode', JSON.stringify(mode));
             $rootScope.mode = mode;
         }
-
-        $rootScope.picBlank = '';
-        $rootScope.noImage = '';
 
         $rootScope.numPerPageItems = 10;
 

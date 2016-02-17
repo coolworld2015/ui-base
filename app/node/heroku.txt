@@ -39,7 +39,7 @@ INTO table1000
 FROM ส่ๅโ09
 WHERE id < 1000;
 -----------------------------------------------------------------------------------------------------
-phone, name, index, street, house, apt, fio, id1
+phone, name, index, street, house, apt
 -----------------------------------------------------------------------------------------------------
 export to Text File (Advance - UTF-8)
 import from Text File (Advance - UTF-8)

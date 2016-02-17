@@ -1,38 +1,12 @@
 <center>
+    <div class="header">UI-Base</div>
+    <br><br>
+    <img ng-src="logo.jpg" class="logo" ng-click="itemsCtrl.goToBack()">
+    <hr>
     <form ng-submit="itemsAddCtrl.itemsAddSubmit()" novalidate name="itemsAddCtrl.form">
         <div class="header">New record</div>
         <br><br>
-        <div class="img-large-border">
-            <img ng-src="{{itemsAddCtrl.pic}}" class="img-large">
-        </div>
-        <br>
         <table class="table table-bordered">
-            <tr>
-                <td>
-                    <select class="form-control select" required
-                            ng-model="itemsAddCtrl.categorySelectedItem"
-                            ng-options="option.name for option in itemsAddCtrl.categoryOptions
-							track by option.name"
-                            ng-change="itemsAddCtrl.updateChangeCategory(itemsAddCtrl.categorySelectedItem)">
-                    </select>
-
-                    <div ng-show="itemsAddCtrl.categoryError" class="valid">Value required</div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <select class="form-control select" required
-                            ng-model="itemsAddCtrl.groupSelectedItem"
-                            ng-options="option.name for option in itemsAddCtrl.groupOptions
-							track by option.name"
-                            ng-change="itemsAddCtrl.updateChangeGroup(itemsAddCtrl.groupSelectedItem)">
-                    </select>
-
-                    <div ng-show="itemsAddCtrl.groupError" class="valid">Value required</div>
-                </td>
-            </tr>
-
             <tr>
                 <td>
                     <input type="text" class="form-control input" required
@@ -55,13 +29,6 @@
                     <div ng-if="itemsAddCtrl.form.$submitted">
                         <div ng-show="itemsAddCtrl.form.description.$error.required" class="valid">Value required</div>
                     </div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <input type="file" id="picFileInput" multiple
-                           onchange="angular.element(this).scope().convertPicToJSON()">
                 </td>
             </tr>
         </table>

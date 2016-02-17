@@ -5,9 +5,9 @@
         .module('app')
         .controller('ConfigCtrl', ConfigCtrl);
 
-    ConfigCtrl.$inject = ['$rootScope', '$state', '$http', '$timeout', 'UsersLocalStorage', 'ItemsLocalStorage'];
+    ConfigCtrl.$inject = ['$rootScope', '$state', '$http', '$timeout', 'ItemsLocalStorage'];
 
-    function ConfigCtrl($rootScope, $state, $http, $timeout, UsersLocalStorage, ItemsLocalStorage) {
+    function ConfigCtrl($rootScope, $state, $http, $timeout, ItemsLocalStorage) {
         var vm = this;
 
         angular.extend(vm, {
@@ -44,7 +44,7 @@
                 vm.mode = 'OFF-LINE (LocalStorage)';
                 $rootScope.mode = 'OFF-LINE (LocalStorage)';
             }
-            localStorage.setItem('ui-collection.mode', JSON.stringify(vm.mode));
+            localStorage.setItem('ui-base.mode', JSON.stringify(vm.mode));
             toMain();
         }
 

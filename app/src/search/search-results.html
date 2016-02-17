@@ -17,15 +17,7 @@
 			filter:searchResultsCtrl.query as itemsFilter
 			track by $index">
             <td ng-click="searchResultsCtrl.itemsEditForm(item)" class="input">
-                <div class="img-div">
-                    <div ng-if="item.pic == 'blank'">
-                        <img ng-src="{{searchResultsCtrl.blank}}" class="img">
-                    </div>
-                    <div ng-if="item.pic != 'blank'">
-                        <img ng-src="{{item.pic}}" class="img">
-                    </div>
-                </div>
-                <div class="name">
+                <div class="name-div">
                     {{item.name}}
                 </div>
             </td>
