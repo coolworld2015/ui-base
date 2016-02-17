@@ -7,7 +7,7 @@ var ItemsModel = require('./mongo').ItemsModel;
 
 var Items = {
     getItems: getItems,
-	getFirstHundred: getFirstHundred,
+    getFirstHundred: getFirstHundred,
     findItem: findItem,
     findPostItem: findPostItem,
     findByName: findByName,
@@ -18,7 +18,7 @@ var Items = {
     saveItem: saveItem,
     removeAllItems: removeAllItems,
     removeItem: removeItem,
-	_sort: sort
+    _sort: sort
 };
 
 module.exports.Items = Items;
@@ -183,12 +183,12 @@ function removeItem(req, res) {
 }
 
 function sort(a, b) {
-	var nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
-	if (nameA < nameB) {
-		return -1
-	}
-	if (nameA > nameB) {
-		return 1
-	}
-	return 0;
+    var nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
+    if (nameA < nameB) {
+        return -1
+    }
+    if (nameA > nameB) {
+        return 1
+    }
+    return 0;
 }
