@@ -9,19 +9,7 @@
         <table class="table table-bordered">
             <tr>
                 <td>
-                    <input type="text" class="form-control input" required
-                           placeholder="Name" name="name"
-                           ng-model="itemsEditCtrl.name">
-
-                    <div ng-if="itemsEditCtrl.form.$submitted">
-                        <div ng-show="itemsEditCtrl.form.name.$error.required" class="valid">Value required</div>
-                    </div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-					<textarea rows=5 type="text" class="form-control input" required
+					<textarea rows=5 type="text" class="form-control input"
                               placeholder="Description" name="description"
                               ng-model="itemsEditCtrl.description">
 					</textarea>

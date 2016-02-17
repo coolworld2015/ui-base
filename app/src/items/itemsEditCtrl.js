@@ -36,7 +36,7 @@
             vm.description = 'Phone: ' + vm.phone + '\n'
                 + 'Str: ' + vm.street + '\n'
                 + 'House: ' + vm.house + '\n'
-                + 'Apt: ' + vm.apt;
+                + 'Apt: ' + vm.apt + '\n'
                 + 'Zip: ' + vm.index;
 
             $rootScope.myError = false;
