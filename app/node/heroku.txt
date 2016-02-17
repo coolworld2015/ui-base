@@ -1,0 +1,49 @@
+-----------------------------------------------------------------------------------------------------
+mongoose.connect('mongodb://admin:admin@ds049935.mongolab.com:49935/ui-collection');
+-----------------------------------------------------------------------------------------------------
+node index.js
+
+mongod.exe --dbpath d:/MongoDB/db
+mongod.exe --dbpath d:/MongoDB/db --repair
+
+-----------------------------------------------------------------------------------------------------
+mongo shell
+show dbs
+use test
+show collections
+db.dropDatabase()
+
+-----------------------------------------------------------------------------------------------------
+mongoose.connect('mongodb://localhost:27017');
+https://mongolab.com/databases/ui-collection
+
+mongoimport -h ds049935.mongolab.com:49935 -d ui-collection -c clients -u admin -p admin --file clients.json
+mongoexport -h ds049935.mongolab.com:49935 -d ui-collection -c clients -u admin -p admin -o clients1.json
+
+mongoimport -h ds049935.mongolab.com:49935 -d ui-collection -c items -u admin -p admin --file collection.json
+mongoexport -h ds049935.mongolab.com:49935 -d ui-collection -c items -u admin -p admin -o items1.json
+
+-----------------------------------------------------------------------------------------------------
+mongoose.connect('mongodb://localhost:27017/ui-collection');
+
+mongoimport --db ui-collection --collection clients --file clients.json
+mongoexport --db ui-collection --collection clients -o clients1.json
+
+mongoimport --db ui-collection --collection items --file collection.json
+mongoexport --db ui-collection --collection items -o items1.json
+-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+SELECT *
+INTO table1000
+FROM ส่ๅโ09
+WHERE id < 1000;
+-----------------------------------------------------------------------------------------------------
+phone, name, index, street, house, apt, fio, id1
+-----------------------------------------------------------------------------------------------------
+export to Text File (Advance - UTF-8)
+import from Text File (Advance - UTF-8)
+-----------------------------------------------------------------------------------------------------
+MDBAdmin - export data - json
+-----------------------------------------------------------------------------------------------------
+Notepad++ - convert to UTF-8 // ONLY )))))))))

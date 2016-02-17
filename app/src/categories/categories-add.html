@@ -1,0 +1,42 @@
+<center>
+    <div class="header">Collection</div>
+    <br><br>
+    <img ng-src="logo.jpg" class="logo" ng-click="categoriesAddCtrl.goToBack()">
+    <hr>
+    <form ng-submit="categoriesAddCtrl.categoriesAddSubmit()" novalidate name="categoriesAddCtrl.form">
+        <div class="header">New record</div>
+        <br><br>
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    <input type="text" class="form-control input" required
+                           placeholder="Name" name="name"
+                           ng-model="categoriesAddCtrl.name">
+
+                    <div ng-if="categoriesAddCtrl.form.$submitted">
+                        <div ng-show="categoriesAddCtrl.form.name.$error.required" class="valid">Value required</div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+					<textarea rows=5 type="text" class="form-control input" required
+                              placeholder="Description" name="description"
+                              ng-model="categoriesAddCtrl.description">
+					</textarea>
+
+                    <div ng-if="categoriesAddCtrl.form.$submitted">
+                        <div ng-show="categoriesAddCtrl.form.description.$error.required" class="valid">Value required
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <button type="submit" class="btn btn-primary button">Submit</button>&nbsp
+        <button type="button" class="btn btn-primary button" ng-click="categoriesAddCtrl.categoriesAddBack()">Back
+        </button>
+    </form>
+    <br><br>
+</center>

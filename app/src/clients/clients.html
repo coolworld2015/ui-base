@@ -1,0 +1,46 @@
+<center>
+    <div class="header">Collection</div>
+    <br><br>
+    <img ng-src="logo.jpg" class="logo" ng-click="clientsCtrl.goToBack()">
+    <hr>
+    <div class="header" ng-click="clientsCtrl.goToBack()">
+        {{clientsCtrl.title}} ({{clientsFilter.length}} / {{clientsCtrl.clients.length}})
+    </div>
+    <div>
+        <input type="text" class="form-control input"
+               placeholder="Search here"
+               ng-model="clientsCtrl.query.name">
+    </div>
+    <table class="table table-striped input">
+        <tr ng-repeat="item in filteredClients
+			| orderBy:clientsCtrl.sort:clientsCtrl.rev |
+			filter:clientsCtrl.query as clientsFilter 
+			track by $index">
+            <td ng-click="clientsCtrl.clientsEditForm(item)" class="input">
+                <div class="img-div">
+                    <div ng-if="item.pic == 'blank'">
+                        <img ng-src="{{clientsCtrl.blank}}" class="img">
+                    </div>
+                    <div ng-if="item.pic != 'blank'">
+                        <img ng-src="{{item.pic}}" class="img">
+                    </div>
+                </div>
+                <div class="name">
+                    {{item.name}}
+                </div>
+            </td>
+        </tr>
+    </table>
+    <hr class="fix-hr">
+		<span class="label label-primary per-page">Items per page:
+			<input class="per-page-input" type="text" ng-model="numPerPage" value={{numPerPage}}>
+		</span>
+
+    <div>
+        <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm"
+                    boundary-links="true"></pagination>
+    </div>
+    <button class="btn btn-primary button" ng-click="clientsCtrl.clientsAdd()">Add</button>&nbsp
+    <button class="btn btn-primary button" ng-click="clientsCtrl.clientsBack()" scroll-here>Back</button>
+    <br><br>
+</center>

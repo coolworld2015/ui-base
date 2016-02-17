@@ -1,0 +1,53 @@
+<center>
+    <div class="header">Collection</div>
+    <br><br>
+    <img ng-src="logo.jpg" class="logo" ng-click="groupsAddCtrl.goToBack()">
+    <hr>
+    <form ng-submit="groupsAddCtrl.groupsAddSubmit()" novalidate name="groupsAddCtrl.form">
+        <div class="header">New record</div>
+        <br><br>
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    <select class="form-control select" required
+                            ng-model="groupsAddCtrl.categorySelectedItem"
+                            ng-options="option.name for option in groupsAddCtrl.categoryOptions
+							track by option.name"
+                            ng-change="groupsAddCtrl.updateChange(groupsAddCtrl.categorySelectedItem)">
+                    </select>
+
+                    <div ng-show="groupsAddCtrl.error" class="valid">Value required</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="text" class="form-control input" required
+                           placeholder="Name" name="name"
+                           ng-model="groupsAddCtrl.name">
+
+                    <div ng-if="groupsAddCtrl.form.$submitted">
+                        <div ng-show="groupsAddCtrl.form.name.$error.required" class="valid">Value required</div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+					<textarea rows=5 type="text" class="form-control input" required
+                              placeholder="Description" name="description"
+                              ng-model="groupsAddCtrl.description">
+					</textarea>
+
+                    <div ng-if="groupsAddCtrl.form.$submitted">
+                        <div ng-show="groupsAddCtrl.form.description.$error.required" class="valid">Value required</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <button type="submit" class="btn btn-primary button">Submit</button>&nbsp
+        <button type="button" class="btn btn-primary button" ng-click="groupsAddCtrl.groupsAddBack()">Back</button>
+    </form>
+    <br><br>
+</center>
