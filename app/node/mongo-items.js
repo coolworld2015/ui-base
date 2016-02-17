@@ -11,6 +11,7 @@ var Items = {
     findItem: findItem,
     findPostItem: findPostItem,
     findByName: findByName,
+    findByPhone: findByPhone,
     editItem: editItem,
     editPostItem: editPostItem,
     updateItem: updateItem,
@@ -79,6 +80,21 @@ function findByName(req, res) {
         }
         console.log('mongo - ' + item.length);
         res.send(item);
+    });
+}
+
+function findByPhone(req, res) {
+    ItemsModel.findOne({
+        phone: req.params.name
+    }, function (err, item) {
+        if (err) {
+            res.send({error: err.message});
+        } else {			
+			var arr = [];
+			arr.push(item);
+			console.log('mongo - ' + item.length);
+			res.send(arr);
+		}
     });
 }
 

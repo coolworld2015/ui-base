@@ -30,7 +30,7 @@
                 {name: 'Search by phone'}
             ];
             vm.selectedItem = vm.options[0];
-
+			vm.search = 'Search by name';
             $rootScope.loading = false;
         }
 

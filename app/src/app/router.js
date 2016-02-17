@@ -146,12 +146,19 @@
                 resolve: {
                     items: ['$http', '$stateParams', '$rootScope', 'ItemsLocalStorage',
                         function ($http, $stateParams, $rootScope, ItemsLocalStorage) {
+							var api; 
                             var name = $stateParams.name;
+                            var type = $stateParams.search;
                             if ($rootScope.mode == 'OFF-LINE (LocalStorage)') {
                                 var data = ItemsLocalStorage.findByName(name);
                                 return data;
                             } else {
-                                var api = 'api/items/findByName/';
+								if (type == 'Search by name') {
+									api = 'api/items/findByName/';
+								} else {
+									api = 'api/items/findByPhone/';
+								}
+								
                                 var webUrl = $rootScope.myConfig.webUrl + api;
                                 return $http.get(webUrl + name)
                                     .then(function (data) {
