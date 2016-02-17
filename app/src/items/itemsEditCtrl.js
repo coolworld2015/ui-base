@@ -32,7 +32,6 @@
                 $state.go('items');
             }
 
-
             vm.description = 'Phone: ' + vm.phone + '\n'
                 + 'Str: ' + vm.street + '\n'
                 + 'House: ' + vm.house + '\n'

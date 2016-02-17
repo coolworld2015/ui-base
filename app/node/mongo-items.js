@@ -26,6 +26,7 @@ module.exports.Items = Items;
 function getItems(req, res) {
     return ItemsModel.find(function (err, items) {
         if (!err) {
+            console.log('mongo - ' + items.length);
             return res.send(items);
         } else {
             res.statusCode = 500;
@@ -37,14 +38,13 @@ function getItems(req, res) {
 function getFirstHundred(req, res) {
     return ItemsModel.find(function (err, items) {
         if (!err) {
-			var hundred = [].concat(items.sort(sort));
-			hundred.splice(10, 10000);
-            return res.send(hundred);
+            console.log('mongoH - ' + items.length);
+            return res.send(items);
         } else {
             res.statusCode = 500;
             return res.send({error: 'Server error'});
         }
-    });
+    }).limit(1000);                                     //TODO 1000 records
 }
 
 function findItem(req, res) {
@@ -54,7 +54,7 @@ function findItem(req, res) {
         if (err) {
             res.send({error: err.message});
         }
-        console.log(item);
+        console.log('mongo - ' + item.length);
         res.send(item);
     });
 }
@@ -66,7 +66,6 @@ function findPostItem(req, res) {
         if (err) {
             res.send({error: err.message});
         }
-        console.log(item);
         res.send(item);
     });
 }
@@ -78,7 +77,7 @@ function findByName(req, res) {
         if (err) {
             res.send({error: err.message});
         }
-        console.log(item);
+        console.log('mongo - ' + item.length);
         res.send(item);
     });
 }
@@ -171,7 +170,7 @@ function saveItem(req, res) {
 function removeAllItems(req, res, err) {
     ItemsModel.remove({}, function (err) {
     });
-    res.send('Collection Items removed');
+    res.send('Collection Items was removed');
 }
 
 function removeItem(req, res) {

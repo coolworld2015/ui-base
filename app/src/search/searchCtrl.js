@@ -27,9 +27,7 @@
         function init() {
             vm.options = [
                 {name: 'Search by name'},
-                {name: 'Search by category'},
-                {name: 'Search by group'},
-                {name: 'Search by description'}
+                {name: 'Search by phone'}
             ];
             vm.selectedItem = vm.options[0];
 

@@ -22,7 +22,7 @@ function getAll(req, res) {
 
 function getFirstHundred(req, res) {
     var hundred = [].concat(jsonItems.sort(sort));
-	hundred.splice(10, 1000000);
+	hundred.splice(1000, 1000000);                  //TODO 1000 records
     console.log(hundred.length);
     res.send(hundred);
 }
@@ -46,6 +46,7 @@ function findByName(req, res) {
             results.push(jsonItems[i]);
         }
     }
+    console.log(results.length);
     return res.send(results);
 }
 
