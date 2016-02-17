@@ -26,7 +26,7 @@
 
         function getUsers() {
             if (UsersLocalStorage.users === undefined) {
-                var users = localStorage.getItem('ui-collection.users');
+                var users = localStorage.getItem('ui-base.users');
                 users = JSON.parse(users);
                 UsersLocalStorage.users = users;
             }
@@ -71,11 +71,11 @@
         }
 
         function setUsers() {
-            localStorage.setItem('ui-collection.users', JSON.stringify(UsersLocalStorage.users));
+            localStorage.setItem('ui-base.users', JSON.stringify(UsersLocalStorage.users));
         }
 
         function uploadUsers(users) {
-            localStorage.setItem('ui-collection.users', JSON.stringify(users));
+            localStorage.setItem('ui-base.users', JSON.stringify(users));
             UsersLocalStorage.users = undefined;
         }
 
