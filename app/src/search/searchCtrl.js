@@ -12,6 +12,7 @@
 
         angular.extend(vm, {
             init: init,
+            hideError: hideError,
             updateChange: updateChange,
             searchSubmit: searchSubmit,
             searchBack: searchBack,
@@ -26,14 +27,18 @@
 
         function init() {
             vm.options = [
-                {name: 'Search by name'},
-                {name: 'Search by phone'}
+                {name: 'Search by phone'},
+                {name: 'Search by name'}
             ];
+            vm.search = 'Search by phone';
             vm.selectedItem = vm.options[0];
-			vm.search = 'Search by name';
             $rootScope.loading = false;
         }
 
+        function hideError() {
+            vm.minLengthError = false;
+        }
+        
         function updateChange(item) {
             vm.error = false;
             vm.search = item.name;
@@ -41,6 +46,11 @@
 
         function searchSubmit() {
             if (vm.form.$invalid) {
+                return;
+            }
+            console.log(vm.name.length);
+            if (vm.name.length < 3) {
+                vm.minLengthError = true;
                 return;
             }
             $rootScope.loading = true;
