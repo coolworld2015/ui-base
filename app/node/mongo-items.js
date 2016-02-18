@@ -54,9 +54,10 @@ function findItem(req, res) {
     }, function (err, item) {
         if (err) {
             res.send({error: err.message});
+        } else {
+            console.log('mongo - ' + item.length);
+            res.send(item);
         }
-        console.log('mongo - ' + item.length);
-        res.send(item);
     });
 }
 
@@ -66,35 +67,37 @@ function findPostItem(req, res) {
     }, function (err, item) {
         if (err) {
             res.send({error: err.message});
+        } else {
+            res.send(item);
         }
-        res.send(item);
     });
 }
 
 function findByName(req, res) {
     ItemsModel.find({
         "name": new RegExp(req.params.name, 'i')
-    }, function (err, item) {
+    }, function (err, items) {
         if (err) {
             res.send({error: err.message});
+        } else {
+            console.log('mongo - ' + item.length);
+            res.send(items);
         }
-        console.log('mongo - ' + item.length);
-        res.send(item);
     });
 }
 
 function findByPhone(req, res) {
-    ItemsModel.findOne({
+    ItemsModel.find({
         phone: req.params.name
-    }, function (err, item) {
+    }, function (err, items) {
         if (err) {
             res.send({error: err.message});
-        } else {			
-			var arr = [];
-			arr.push(item);
-			console.log('mongo - ' + item.length);
-			res.send(arr);
-		}
+        } else {
+            //var arr = [];
+            //arr.push(items);
+            console.log('mongo - ' + items.length);
+            res.send(items);
+        }
     });
 }
 
@@ -104,17 +107,16 @@ function editItem(req, res) {
     }, function (err, item) {
         if (err) {
             res.send({error: err.message});
+        } else {
+            item.name = req.params.name;
+            item.save(function (err) {
+                if (!err) {
+                    res.send(item);
+                } else {
+                    return res.send(err);
+                }
+            });
         }
-
-        item.name = req.params.name;
-
-        item.save(function (err) {
-            if (!err) {
-                res.send(item);
-            } else {
-                return res.send(err);
-            }
-        });
     });
 }
 
@@ -138,18 +140,18 @@ function updateItem(req, res) {
     }, function (err, item) {
         if (err) {
             res.send({error: err.message});
+        } else {
+            item.name = req.body.name;
+            item.description = req.body.description;
+
+            item.save(function (err) {
+                if (!err) {
+                    res.send(item);
+                } else {
+                    return res.send(err);
+                }
+            });
         }
-
-        item.name = req.body.name;
-        item.description = req.body.description;
-
-        item.save(function (err) {
-            if (!err) {
-                res.send(item);
-            } else {
-                return res.send(err);
-            }
-        });
     });
 }
 
@@ -162,23 +164,23 @@ function addItem(req, res) {
         function (err, item) {
             if (err) {
                 return res.send({error: 'Server error'});
+            } else {
+                res.send(item);
             }
-            res.send(item);
         });
 }
 
 function saveItem(req, res) {
-    console.log(req.body);
     var item = new ItemsModel({
         id: req.body.id,
         name: req.body.name,
         description: req.body.description
     });
     item.save(function (err) {
-        if (!err) {
-            res.send(item);
-        } else {
+        if (err) {
             return res.send(err);
+        } else {
+            res.send(item);
         }
     });
 }
