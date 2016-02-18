@@ -80,7 +80,7 @@ function findByName(req, res) {
         if (err) {
             res.send({error: err.message});
         } else {
-            console.log('mongo - ' + item.length);
+            console.log('mongo - ' + items.length);
             res.send(items);
         }
     });
@@ -88,13 +88,11 @@ function findByName(req, res) {
 
 function findByPhone(req, res) {
     ItemsModel.find({
-        phone: req.params.name
+        "phone": new RegExp(req.params.name)
     }, function (err, items) {
         if (err) {
             res.send({error: err.message});
         } else {
-            //var arr = [];
-            //arr.push(items);
             console.log('mongo - ' + items.length);
             res.send(items);
         }

@@ -16,6 +16,10 @@ db.dropDatabase()
 -----------------------------------------------------------------------------------------------------
 mongoose.connect('mongodb://localhost:27017/ui-base');
 https://mongolab.com/databases/ui-base
+
+-----------------------------------------------------------------------------------------------------
+mongoimport -h ds011258.mongolab.com:11258 -d ui-base -c items -u admin -p admin --file kiev09_100_000_mongo.json
+
 -----------------------------------------------------------------------------------------------------
 mongoimport -h ds011258.mongolab.com:11258 -d ui-base -c items -u admin -p admin --file items.json
 mongoexport -h ds011258.mongolab.com:11258 -d ui-base -c items -u admin -p admin -o items1.json
