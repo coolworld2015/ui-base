@@ -31,6 +31,7 @@ app.get('/file/api/items/getAll', fileItems.getAll);
 app.get('/file/api/items/get', fileItems.getFirstHundred);
 app.get('/file/api/items/findId/:id', fileItems.findById);
 app.get('/file/api/items/findByName/:name', fileItems.findByName);
+app.get('/file/api/items/findByPhone/:name', fileItems.findByPhone);
 app.post('/file/api/items/add', fileItems.addItem);
 app.post('/file/api/items/delete', fileItems.removeItem);
 app.post('/file/api/items/update', fileItems.updateItem);

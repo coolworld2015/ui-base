@@ -7,6 +7,7 @@ var Items = {
 	getFirstHundred: getFirstHundred,
     findById: findById,
     findByName: findByName,
+    findByPhone: findByPhone,
     addItem: addItem,
     updateItem: updateItem,
     removeItem: removeItem,
@@ -43,6 +44,18 @@ function findByName(req, res) {
     var results = [];
     for (var i = 0; i < jsonItems.length; i++) {
         if (jsonItems[i].name.toUpperCase().indexOf(name.toUpperCase()) > -1) {
+            results.push(jsonItems[i]);
+        }
+    }
+    console.log(results.length);
+    return res.send(results);
+}
+
+function findByPhone(req, res) {
+    var name = req.params.name;
+    var results = [];
+    for (var i = 0; i < jsonItems.length; i++) {
+        if (jsonItems[i].phone.toUpperCase().indexOf(name.toUpperCase()) > -1) {
             results.push(jsonItems[i]);
         }
     }

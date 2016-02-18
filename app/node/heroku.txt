@@ -14,10 +14,6 @@ show collections
 db.dropDatabase()
 
 -----------------------------------------------------------------------------------------------------
-mongoose.connect('mongodb://localhost:27017/ui-base');
-https://mongolab.com/databases/ui-base
-
------------------------------------------------------------------------------------------------------
 mongoimport -h ds011258.mongolab.com:11258 -d ui-base -c items -u admin -p admin --file kiev09_100_000_mongo.json
 
 -----------------------------------------------------------------------------------------------------
@@ -28,11 +24,13 @@ mongoimport -h ds011258.mongolab.com:11258 -d ui-base -c users -u admin -p admin
 mongoexport -h ds011258.mongolab.com:11258 -d ui-base -c users -u admin -p admin -o users1.json
 
 -----------------------------------------------------------------------------------------------------
-mongoimport --db ui-base --base items --file items.json
-mongoexport --db ui-base --base items -o items1.json
+mongoose.connect('mongodb://localhost:27017/ui-base');
 
-mongoimport --db ui-base --base users --file users.json
-mongoexport --db ui-base --base users -o users1.json
+mongoimport --db ui-base --collection items --file items.json
+mongoexport --db ui-base --collection items -o items1.json
+
+mongoimport --db ui-base --collection users --file users.json
+mongoexport --db ui-base --collection users -o users1.json
 
 -----------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------
