@@ -38,7 +38,7 @@
         function hideError() {
             vm.minLengthError = false;
         }
-        
+
         function updateChange(item) {
             vm.error = false;
             vm.search = item.name;
