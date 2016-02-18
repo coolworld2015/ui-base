@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
-var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
-    replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } };
+var options = { server: { socketOptions: { connectTimeoutMS: 60000 } },
+    replset: { socketOptions: { connectTimeoutMS : 60000 } } };
 
 mongoose.connect('mongodb://admin:admin@ds011258.mongolab.com:11258/ui-base', options);
 //mongoose.connect('mongodb://localhost:27017/ui-base');
