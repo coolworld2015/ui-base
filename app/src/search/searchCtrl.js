@@ -48,7 +48,7 @@
             if (vm.form.$invalid) {
                 return;
             }
-            console.log(vm.name.length);
+
             if (vm.name.length < 3) {
                 vm.minLengthError = true;
                 return;
