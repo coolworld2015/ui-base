@@ -153,7 +153,7 @@
                                 var data = ItemsLocalStorage.findByName(name);
                                 return data;
                             } else {
-								if (type == 'Search by name') {
+								if (type == 'Search by Name') {
 									api = 'api/items/findByName/';
 								} else {
 									api = 'api/items/findByPhone/';
