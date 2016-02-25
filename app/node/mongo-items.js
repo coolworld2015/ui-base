@@ -83,7 +83,7 @@ function findByName(req, res) {
             console.log('mongo - ' + items.length);
             res.send(items);
         }
-    });
+    }).maxTimeMS(60000);                               //TODO 1 min request
 }
 
 function findByPhone(req, res) {

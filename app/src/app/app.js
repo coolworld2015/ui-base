@@ -14,6 +14,7 @@
         $httpProvider.interceptors.push(['$q', '$injector', '$log', '$rootScope', function ($q, $injector, $log, $rootScope) {
             return {
                 'responseError': function (rejection) {
+					$log.debug(rejection);
                     if (rejection.status === -1) {
                         $log.debug(rejection);
 						$rootScope.message = true;
