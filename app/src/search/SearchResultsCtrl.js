@@ -43,6 +43,7 @@
 
             $rootScope.myError = false;
             $rootScope.loading = false;
+			$rootScope.message = false;
         }
 
         function updateChange() {

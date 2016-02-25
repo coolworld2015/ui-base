@@ -24,6 +24,7 @@
         function init() {
             $rootScope.myError = false;
             $rootScope.loading = false;
+			$rootScope.message = false;
         }
 
         function go(state) {

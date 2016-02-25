@@ -32,7 +32,12 @@
             ];
             vm.search = 'Search by Phone';
             vm.selectedItem = vm.options[0];
-            $rootScope.loading = false;
+            
+			$rootScope.loading = false;
+			$rootScope.myError = false;
+			$timeout(function () {
+				$rootScope.message = false;
+			}, 1000);
         }
 
         function hideError() {
@@ -55,6 +60,7 @@
             }
             $rootScope.loading = true;
             $rootScope.error = false;
+			$rootScope.message = false;
             $state.go('search-results', {name: vm.name, search: vm.search, finds: true});
         }
 
