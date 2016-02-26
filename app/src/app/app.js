@@ -32,7 +32,7 @@
     runHandler.$inject = ['$rootScope', '$state'];
 
     function runHandler($rootScope, $state) {
-        $rootScope.$on('$stateChangeStart', function (event, toState) { //TODO Change $stateChangeStart
+        $rootScope.$on('$stateChangeStart1', function (event, toState) { //TODO Change $stateChangeStart
             var requireLogin = toState.data.requireLogin;
             if (requireLogin && typeof $rootScope.currentUser === 'undefined') {
                 event.preventDefault();
@@ -64,9 +64,9 @@
         $rootScope.numPerPageItems = 10;
 
         $rootScope.myConfig = {
-            webUrl: 'http://ui-base.herokuapp.com/' //TODO Heroku MongoDB
+            //webUrl: 'http://ui-base.herokuapp.com/' //TODO Heroku MongoDB
             //webUrl: 'http://localhost:3000/' //TODO Local MongoDB
-            //webUrl: 'http://localhost:3000/file/' //TODO Local JSON DB
+            webUrl: 'http://localhost:3000/file/' //TODO Local JSON DB
         };
 
         //$rootScope.mode = 'OFF-LINE (LocalStorage)'; //TODO !!! ONLY for Google Market

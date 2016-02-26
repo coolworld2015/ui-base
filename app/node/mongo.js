@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var options = { server: { socketOptions: { connectTimeoutMS: 60000 }}};
 
 mongoose.connect('mongodb://admin:admin@ds011258.mongolab.com:11258/ui-base', options);
-//mongoose.connect('mongodb://localhost:27017/ui-base');
+//mongoose.connect('mongodb://localhost:27017/ui-base'); //TODO ONLY for Local INSTANCE MongoDB
 
 var db = mongoose.connection;
 
@@ -37,3 +37,15 @@ var Users = new Schema({
 
 var UsersModel = mongoose.model('Users', Users);
 module.exports.UsersModel = UsersModel;
+
+//---------------------------------------------------------------------------------------------
+var Audit = new Schema({
+    id: {type: String, required: true},
+    name: {type: String, required: true},
+    date: {type: String, required: true},
+    ip: {type: String, required: true},
+    description: {type: String, required: true}
+});
+
+var AuditModel = mongoose.model('Audit', Audit);
+module.exports.AuditModel = AuditModel;

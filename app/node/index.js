@@ -75,3 +75,16 @@ app.post('/api/users/update', mongoUsers.updateUser);
 app.post('/api/users/add', mongoUsers.addUser);
 app.get('/api/users/drop', mongoUsers.removeAllUsers);
 app.post('/api/users/delete', mongoUsers.removeUser);
+
+//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+var fileAudit = require('./file-audit').Audit;
+
+app.get('/file/api/audit/get', fileAudit.getAll);
+app.post('/file/api/audit/add', fileAudit.addItem);
+
+//------------------------------------------------------------------------
+var mongoAudit = require('./mongo-audit').Audit;
+
+app.get('/api/audit/get', mongoAudit.getAudit);
+app.post('/api/audit/add', mongoAudit.addAudit);
