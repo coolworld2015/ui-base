@@ -21,7 +21,7 @@ function getAudit(req, res) {
             res.statusCode = 500;
             return res.send({error: 'Server error'});
         }
-    });
+    }).sort({date: -1});                            //TODO sort reverse
 }
 
 function addAudit(req, res) {
