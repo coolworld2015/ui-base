@@ -27,10 +27,11 @@
 
         function init() {
             vm.options = [
+				{name: 'Select search'},
                 {name: 'Search by Phone'},
                 {name: 'Search by Name'}
             ];
-            vm.search = 'Search by Phone';
+            vm.search = 'Select search';
             vm.selectedItem = vm.options[0];
             
 			$rootScope.loading = false;
@@ -46,10 +47,16 @@
 
         function updateChange(item) {
             vm.error = false;
+			vm.notSelectedError = false;
             vm.search = item.name;
         }
 
         function searchSubmit() {
+			if (vm.search == 'Select search') {
+				vm.notSelectedError = true;
+                return;
+            }
+			
             if (vm.form.$invalid) {
                 return;
             }
