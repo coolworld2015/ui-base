@@ -117,3 +117,33 @@ app.get('/api/audit/get', function(req, res) {
 	});
 });
 
+app.post('/api/audit/add', function(req, res) {
+	var agent = req.body.authorization;
+	
+	jwt.verify(agent, secret, function(err, decoded) {
+		if (err) {
+			return res.status(403).send({ 
+				success: false, 
+				message: 'No token provided.' 
+			});
+		} else {
+			var AuditModel = require('./mongo').AuditModel;
+			var date = new Date().toJSON().slice(0, 10);
+			var time = new Date().toTimeString().slice(0, 8);
+			AuditModel.create({
+					id: req.body.id,
+					name: req.body.name,
+					date: date + ' ' + time,
+					ip: req.ip,
+					description: req.body.description
+				},
+				function (err, audit) {
+					if (err) {
+						return res.send({error: 'Server error'});
+					} else {
+						res.send(audit);
+					}
+				});
+		}
+	});	
+});
