@@ -22,7 +22,7 @@ app.use(express.static(__dirname + '/build'));
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, accept, authorization');
     next();
 });
 
@@ -41,6 +41,7 @@ app.get('/api/auth', function(req, res) {
 	return res.send(token);
 });
 
+//------------------------------------------------------------------------
 app.post('/api/login', function(req, res) {
 	var UsersModel = require('./mongo').UsersModel;
     UsersModel.findOne({
