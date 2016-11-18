@@ -10,9 +10,7 @@ app.listen(process.env.PORT || 3000, function () {
 
 app.get('/', function (req, res) {
 	//res.sendFile(__dirname + '/build/index.html');
-
-	res.sendFile(__dirname + '/users.html');			//	MUST REMOVE !!!
-	
+	res.sendFile(__dirname + '/auth.html');			//	MUST REMOVE !!!
     //res.send('It is just API Server...');
 });
 
@@ -27,7 +25,6 @@ app.use(function (req, res, next) {
 });
 
 //------------------------------------------------------------------------
-
 var jwt = require('jsonwebtoken');
 var secret = 'f3oLigPb3vGCg9lgL0Bs97wySTCCuvYdOZg9zqTY32o';
 
@@ -70,6 +67,7 @@ app.post('/api/login', function(req, res) {
     });
 });
 
+//------------------------------------------------------------------------
 app.get('/api/users/get', function(req, res) {
 	var agent = req.headers.authorization;
 	//console.log('agent - ' + agent);
@@ -94,3 +92,28 @@ app.get('/api/users/get', function(req, res) {
 		}
 	});
 });
+
+//------------------------------------------------------------------------
+app.get('/api/audit/get', function(req, res) {
+	var agent = req.headers.authorization;
+	
+	jwt.verify(agent, secret, function(err, decoded) {
+		if (err) {
+			return res.status(403).send({ 
+				success: false, 
+				message: 'No token provided.' 
+			});
+		} else {
+			var AuditModel = require('./mongo').AuditModel;
+			return AuditModel.find(function (err, users) {
+				if (!err) {
+					return res.send(users);
+				} else {
+					res.statusCode = 500;
+					return res.send({error: 'Server error'});
+				}
+			}).sort({date: -1}); 
+		}
+	});
+});
+
