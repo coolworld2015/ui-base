@@ -147,3 +147,77 @@ app.post('/api/audit/add', function(req, res) {
 		}
 	});	
 });
+
+//------------------------------------------------------------------------
+app.get('/api/items/get', function(req, res) {
+	var agent = req.headers.authorization;
+	
+	jwt.verify(agent, secret, function(err, decoded) {
+		if (err) {
+			return res.status(403).send({ 
+				success: false, 
+				message: 'No token provided.' 
+			});
+		} else {
+			var ItemsModel = require('./mongo').ItemsModel;
+			return ItemsModel.find(function (err, users) {
+				if (!err) {
+					return res.send(users);
+				} else {
+					res.statusCode = 500;
+					return res.send({error: 'Server error'});
+				}
+			}).limit(1000);
+		}
+	});
+});
+
+app.get('/api/items/findByName/:name', function(req, res) {
+	var agent = req.headers.authorization;
+	
+	jwt.verify(agent, secret, function(err, decoded) {
+		if (err) {
+			return res.status(403).send({ 
+				success: false, 
+				message: 'No token provided.' 
+			});
+		} else {
+			var ItemsModel = require('./mongo').ItemsModel;
+			ItemsModel.find({
+				"name": new RegExp(req.params.name, 'i')
+			}, function (err, items) {
+				if (err) {
+					res.send({error: err.message});
+				} else {
+					console.log('mongo - ' + items.length);
+					res.send(items);
+				}
+			});
+		}
+	});
+});
+
+app.get('/api/items/findByPhone/:name', function(req, res) {
+	var agent = req.headers.authorization;
+	
+	jwt.verify(agent, secret, function(err, decoded) {
+		if (err) {
+			return res.status(403).send({ 
+				success: false, 
+				message: 'No token provided.' 
+			});
+		} else {
+			var ItemsModel = require('./mongo').ItemsModel;
+			ItemsModel.find({
+				"phone": new RegExp(req.params.name)
+			}, function (err, items) {
+				if (err) {
+					res.send({error: err.message});
+				} else {
+					console.log('mongo - ' + items.length);
+					res.send(items);
+				}
+			});
+		}
+	});
+});
