@@ -64,9 +64,9 @@
         $rootScope.numPerPageItems = 10;
 
         $rootScope.myConfig = {
-            //webUrl: 'http://ui-base.herokuapp.com/' //TODO Heroku MongoDB
+            webUrl: 'http://ui-base.herokuapp.com/' //TODO Heroku MongoDB
             //webUrl: 'http://localhost:3000/' //TODO Local MongoDB
-            webUrl: 'http://localhost:3000/file/' //TODO Local JSON DB
+            //webUrl: 'http://localhost:3000/file/' //TODO Local JSON DB
         };
 
         //$rootScope.mode = 'OFF-LINE (LocalStorage)'; //TODO !!! ONLY for Google Market
