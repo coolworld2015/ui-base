@@ -49,8 +49,26 @@ app.post('/api/login', function(req, res) {
         } 
 		if (user) {
 			if (user.pass == req.body.pass) {
-				//console.log(user);
-				res.send(token);
+
+				// Audit start
+				var AuditModel = require('./mongo').AuditModel;
+				var date = new Date().toJSON().slice(0, 10);
+				var time = new Date().toTimeString().slice(0, 8);
+				AuditModel.create({
+						id: + new Date(),
+						name: req.body.name,
+						date: date + ' ' + time,
+						ip: req.ip,
+						description: req.body.description
+				},
+				function (err, audit) {
+					if (err) {
+						return res.send({error: 'Server error'});
+					} else {
+						res.send(token); // Send TOKEN here !!!
+					}
+				});
+				// Audit end
 			} else {
 				res.status(403).send({ 
 					success: false, 

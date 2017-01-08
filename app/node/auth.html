@@ -91,7 +91,8 @@
 				
                 var item = {
 					"name": vm.name,
-					"pass": vm.pass
+					"pass": vm.pass,
+					"description": navigator.userAgent
                 };
 				
                 $http.post(url + 'api/login', item)
