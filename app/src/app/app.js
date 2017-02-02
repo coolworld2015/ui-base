@@ -6,18 +6,18 @@
 
 	angular
         .module('app')
-        .config(redirectOn404);
+        .config(redirectOn403);
 
-    redirectOn404.$inject = ['$httpProvider'];
+    redirectOn403.$inject = ['$httpProvider'];
 
-    function redirectOn404($httpProvider) {
+    function redirectOn403($httpProvider) {
         $httpProvider.interceptors.push(['$q', '$injector', '$log', '$rootScope', function ($q, $injector, $log, $rootScope) {
             return {
                 'responseError': function (rejection) {
-                    if (rejection.status === -1 || rejection.status === 503) {
+                    if (rejection.status === -1 || rejection.status === 403) {
                         $log.debug(rejection);
 						$rootScope.message = true;
-                        $injector.get('$state').go('search');
+                        $injector.get('$state').go('login');
                     }
                     return $q.reject(rejection);
                 }
