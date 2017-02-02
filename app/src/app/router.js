@@ -33,7 +33,10 @@
                         case 'items':
                             if ($rootScope.items === undefined) {
                                 var webUrl = $rootScope.myConfig.webUrl + url;
-                                return $http.get(webUrl)
+								return $http.get(webUrl,
+									{
+										headers: {'Authorization': $rootScope.access_token}
+									})
                                     .then(function (result) {
                                         ItemsService.items = result.data;
                                         $rootScope.items = true;
@@ -53,7 +56,10 @@
                         case 'users':
                             if ($rootScope.users === undefined) {
                                 var webUrl = $rootScope.myConfig.webUrl + url;
-                                return $http.get(webUrl)
+								return $http.get(webUrl,
+									{
+										headers: {'Authorization': $rootScope.access_token}
+									})
                                     .then(function (result) {
                                         UsersService.users = result.data;
                                         $rootScope.users = true;
@@ -72,7 +78,10 @@
 
                         case 'audit':
                             webUrl = $rootScope.myConfig.webUrl + url;
-                            return $http.get(webUrl)
+							return $http.get(webUrl,
+								{
+									headers: {'Authorization': $rootScope.access_token}
+								})
                                 .then(function (result) {
                                     $rootScope.loading = false;
                                     return result.data;
@@ -198,7 +207,10 @@
 								}
 								
                                 var webUrl = $rootScope.myConfig.webUrl + api;
-                                return $http.get(webUrl + name)
+                                return $http.get(webUrl + name,
+									{
+										headers: {'Authorization': $rootScope.access_token}
+									})
                                     .then(function (data) {
                                         return data.data;
                                     })

@@ -17,7 +17,11 @@
 		
         function getAudit() {
             var url = webUrl + 'api/audit/get';
-            return $http.get(url)
+						console.log($rootScope.access_token)
+			return $http.get(url,
+				{
+					headers: {'Authorization': $rootScope.access_token}
+				})
                 .then(function (result) {
                     return result;
                 });
